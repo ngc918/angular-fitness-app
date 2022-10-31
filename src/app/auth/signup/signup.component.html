@@ -5,6 +5,7 @@
     #f="ngForm"
     (ngSubmit)="onSubmit(f)"
   >
+    <!--Email-->
     <mat-form-field>
       <input
         type="email"
@@ -16,13 +17,14 @@
         required
         #emailInput="ngModel"
       />
-      <mat-error *ngIf="emailInput.hasError('required')"
-        >Field must not be empty</mat-error
-      >
-      <mat-error *ngIf="!emailInput.hasError('required')"
-        >Email is invalid</mat-error
-      >
+      <mat-error *ngIf="emailInput.hasError('required')">
+        Field must not be empty
+      </mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">
+        Email is invalid
+      </mat-error>
     </mat-form-field>
+    <!--Password-->
     <mat-form-field hintLabel="Should be at least 6 characters.">
       <input
         type="password"
@@ -36,6 +38,19 @@
       />
       <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
       <mat-error>Must be at least 6 characters</mat-error>
+    </mat-form-field>
+    <!--Calender w/ age restriction-->
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        placeholder="Birthdate"
+        [matDatepicker]="picker"
+        [max]="maxDate"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary">Submit</button>
   </form>
